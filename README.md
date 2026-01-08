@@ -1,4 +1,4 @@
-# Terragramy – Karta dne
+﻿# Terragramy â€“ Karta dne
 
 ## Requirements
 - Node.js
@@ -26,14 +26,14 @@ emulator-5554    device
 
 ## Android HMR logcat
 Krok 1: `npm run android:dev` (v jednom terminalu)
-Krok 2: `npm run android:logcat:hmr` (v druhém terminalu)
+Krok 2: `npm run android:logcat:hmr` (v druhĂ©m terminalu)
 
-Co očekávat v logu:
+Co oÄŤekĂˇvat v logu:
 - `[HMR DEBUG] WebSocket connect -> ws://<host>:5173/@vite/ws`
 - `[HMR DEBUG] WebSocket OPEN`
 
-Když se objeví `ws://tauri.localhost/@vite/ws`, znamená to, že HMR jde na špatný host a Android WebView se k Vite serveru nepřipojí.
-Když vidíš `CLOSE 1006`, WebSocket spadl bez správného ukončení (obvykle špatný host/port nebo síťové spojení).
+KdyĹľ se objevĂ­ `ws://tauri.localhost/@vite/ws`, znamenĂˇ to, Ĺľe HMR jde na ĹˇpatnĂ˝ host a Android WebView se k Vite serveru nepĹ™ipojĂ­.
+KdyĹľ vidĂ­Ĺˇ `CLOSE 1006`, WebSocket spadl bez sprĂˇvnĂ©ho ukonÄŤenĂ­ (obvykle ĹˇpatnĂ˝ host/port nebo sĂ­ĹĄovĂ© spojenĂ­).
 
 ## Android HMR host
 If you have multiple network adapters (VPN, virtual adapters), set `TAURI_DEV_HOST` to the LAN IP your Android device can reach.
@@ -48,3 +48,46 @@ Verify in logcat:
 - `public/logo.webp`
 - `public/favicon.ico`
 - `public/symbols/<slug>.webp` (one file per card slug)
+
+## Android release APK
+### Generate launcher icons
+- `npm run android:icons`
+
+### Keystore passwords (PowerShell)
+```
+$env:ANDROID_KEYSTORE_PASSWORD="your-store-password"
+$env:ANDROID_KEY_PASSWORD="your-key-password"
+```
+
+### Create keystore + build + install
+```
+npm run android:keystore:create
+npm run android:build:apk
+npm run android:install:apk
+```
+
+Final APK path:
+`src-tauri/gen/android/app/build/outputs/apk/release/app-release.apk`
+
+### Verification checklist
+- Logo click does not open external browser
+- Icons present in `src-tauri/gen/android/app/src/main/res/mipmap-*`
+- Release APK exists and installs
+
+## Build signed release APK (no Play Store)
+1) `npm install`
+2) In the same terminal session (PowerShell):
+```
+$env:ANDROID_KEYSTORE_PASSWORD="YOUR_PASSWORD"
+$env:ANDROID_KEY_PASSWORD="YOUR_PASSWORD"
+```
+3) `npm run android:apk:release`
+
+The release build does NOT require the dev server running.
+
+APK output path will be printed and is typically under:
+`src-tauri/gen/android/app/build/outputs/apk/universal/release/`
+
+Back up `src-tauri/keys/release.keystore` and keep the passwords safe. Losing them prevents updates signed with the same key.
+
+

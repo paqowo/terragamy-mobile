@@ -59,14 +59,15 @@ const Home: React.FC = () => {
         
         {/* LOGO SECTION */}
         <div className="lux-shimmer p-4 rounded-full transition-transform duration-700 hover:scale-105">
-          <a href="https://www.freecooperation.cz" target="_blank" rel="noopener noreferrer">
+          {/* Logo click stays inside app (no external redirect). */}
+          <Link to="/">
             <img 
               src={logoSrc} 
               alt="Terragramy Logo" 
               style={{ filter: 'drop-shadow(0 0 25px rgba(201, 162, 77, 0.2))' }}
               className="w-48 md:w-56 h-auto"
             />
-          </a>
+          </Link>
         </div>
 
         {/* NAVIGATION CARDS */}

@@ -1,4 +1,4 @@
-package cz.terragramy.karta_dne
+package cz.terragramy.karta.dne
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

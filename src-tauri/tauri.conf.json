@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "terragramy-karta-dne",
   "version": "0.1.0",
-  "identifier": "cz.terragramy.karta_dne",
+  "identifier": "cz.terragramy.karta.dne",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",

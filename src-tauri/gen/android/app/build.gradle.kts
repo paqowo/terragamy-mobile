@@ -15,10 +15,10 @@ val tauriProperties = Properties().apply {
 
 android {
     compileSdk = 36
-    namespace = "cz.terragramy.karta_dne"
+    namespace = "cz.terragramy.karta.dne"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "cz.terragramy.karta_dne"
+        applicationId = "cz.terragramy.karta.dne"
         minSdk = 24
         targetSdk = 36
         versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()

@@ -9,12 +9,17 @@
     "tauri": "tauri",
     "preandroid:dev": "node scripts/kill-port.mjs 5173",
     "android:dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/android-dev.ps1",
+    "android:icons": "node scripts/generate-android-icons.mjs",
     "android:logcat:hmr": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/logcat-hmr.ps1",
     "android:logcat:hmr:all": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"adb logcat -c; adb logcat\"",
     "android:restart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/restart-android-dev.ps1",
     "android:dev:clean": "npm run android:restart && npm run android:dev",
+    "android:keystore:create": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/android-keystore-create.ps1",
+    "android:build:apk": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/android-build-apk.ps1",
+    "android:install:apk": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/android-install-apk.ps1",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "android:apk:release": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"& 'scripts/android-env.ps1' -Release; & 'scripts/android-keystore-ensure.ps1'; & 'scripts/android-build-apk-release.ps1'\""
   },
   "dependencies": {
     "react": "^19.2.3",
@@ -27,6 +32,7 @@
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
+    "sharp": "^0.34.3",
     "tailwindcss": "^3.4.6",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"

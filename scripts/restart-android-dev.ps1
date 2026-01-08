@@ -128,8 +128,8 @@ if (-not $bootReady) {
 }
 
 Write-Host "Bringing app to foreground..."
-& $adb -s $serial shell am force-stop cz.terragramy.karta_dne 2>$null | Out-Null
-& $adb -s $serial shell monkey -p cz.terragramy.karta_dne -c android.intent.category.LAUNCHER 1 2>$null | Out-Null
+& $adb -s $serial shell am force-stop cz.terragramy.karta.dne 2>$null | Out-Null
+& $adb -s $serial shell monkey -p cz.terragramy.karta.dne -c android.intent.category.LAUNCHER 1 2>$null | Out-Null
 
 Write-Host "adb devices:"
 & $adb devices
